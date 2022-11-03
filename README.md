@@ -30,11 +30,10 @@ OOP is a simple CRUD system that views, creates and deletes products. The web ap
 	private $_password = '';
 	private $_database = 'test';
 
-```
-4. create the table in the databse by importing the recsys.sql 
-5. **Run the development server:**
+``` 
+4. **Run the development server:**
 ```
 php -S localhost:8080
 ```
-6. **Verify on the Browser**<br>
+5. **Verify on the Browser**<br>
 Navigate to project homepage [http://127.0.0.1:8080/](http://127.0.0.1:8080/) or [http://localhost:8080](http://localhost:8080)
