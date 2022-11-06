@@ -23,7 +23,6 @@ class Validation extends DB{
 
 
         $errors = [];
-        //$data = [];
         if ($this->validateSku($this->sku)) {
             $errors[] = $this->validateSku($this->sku);
         }
@@ -37,10 +36,27 @@ class Validation extends DB{
         if ($this->validateType($this->type)) {
             $errors[] = $this->validateType($this->type);
         }
-        // if ($this->validateInput()) {
-        //     $errors[] = $this->validateInput();
-        // }
-         //echo print_r($errors);
+        if($this->type === 'disc'){
+            //echo $data['size']; die;
+            if ($this->validateDisc($data['size'])) {
+            $errors[] = $this->validateDisc($data['size']);
+            //var_dump($errors); die;
+            }
+        }
+        if($this->type === 'book'){
+            if ($this->validateBook($data['weight'])) {
+            $errors[] = $this->validateBook($data['weight']);
+            //var_dump($errors); die;
+            }
+        }
+        if($this->type === 'furniture'){
+            //echo $data['size']; die;
+            $ls = ['length'=>$data['length'],'weight'=>$data['width'],'height'=>$data['height']];
+            if ($this->validateFurniture($ls)) {
+            $errors[] = $this->validateFurniture($ls);
+            //var_dump($errors); die;
+            }
+        }
         return $errors;
     }
     private function validateSku($sku)
@@ -71,30 +87,55 @@ class Validation extends DB{
         }
 
         if (!(strlen($price) > 0) || !(floatval($price) >= 0 || !filter_var($price, FILTER_VALIDATE_FLOAT))) {
-            return "Invalid price!";
+            return "Invalid price Provided!";
         }
         return "";
         
     }
     private function validateType($type)
     {
-        if($type === 'please choose') {
+        if($type === '') {
             return "Type was not provided!";
         }
         return "";
     }
-    // public function validateInput(){
-    //     if($type === 'disc' && empty(data['size'])) {
-    //         return "Size was not provided!";
-    //     }
-    //     if($type === 'book' && !data['weight']) {
-    //         return "Weight was not provided!";
-    //     }
-    //     if($type === 'furniture' && (!data['length'] && !data['width'] && !data['height'])) {
-    //         return "Dimensions were not provided!";
-    //     }
-    //     return "";
+    private function validateDisc($size)
+    {
+        if(!$size){
+            return "Size was not provided!";
+        }
 
-    // }
+        if (!(strlen($size) > 0) || !(floatval($size) >= 0 || !filter_var($size, FILTER_VALIDATE_FLOAT))) {
+            return "Invalid Size Provided!";
+        }
+        return "";
+        
+    }
+    private function validateBook($weight)
+    {
+        if(!$weight){
+            return "weight was not provided!";
+        }
 
+        if (!(strlen($weight) > 0) || !(floatval($weight) >= 0 || !filter_var($weight, FILTER_VALIDATE_FLOAT))) {
+            return "Invalid weight Provided!";
+        }
+        return "";
+        
+    }
+    private function validateFurniture($data)
+    {
+        //var_dump($data); die;
+        foreach ($data as $key => $value) {
+            if(!$value){
+            return $key." was not provided!";
+            }        
+
+            if (!(strlen($value) > 0) || !(floatval($value) >= 0 || !filter_var($value, FILTER_VALIDATE_FLOAT))) {
+                return "Invalid". $key ." Provided!";
+            }
+        }
+        return "";
+        
+    }
 }
