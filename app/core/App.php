@@ -8,11 +8,6 @@ class App{
 	protected $routes = [];
 	protected $params = [];
 	protected $link = [];
-	// protected $controller = "UserController";
-	// protected $action = "index";
-
-	// protected $params = [];
-	//public Router $router;
 	public function get($url,$callback){
 		$this->routes['get'][$url]= $callback;
 
@@ -56,7 +51,6 @@ class App{
 		$params = $this->params;
 		//var_dump($params); die;
 		$method = strtolower($_SERVER['REQUEST_METHOD']);
-		//var_dump($method); die;
 		$callback = $this->routes[$method][$url];
 		//var_dump($callback); die;
 		if(!$callback){
@@ -72,9 +66,6 @@ class App{
 
 	}
 	public static function renderView($view,$params=[]){
-		//var_dump(dirname(__DIR__)); die;
-		// $layout = App::viewLayout();
-		// $viewContent = App::renderViewOnly($view,$params);
 		foreach ($params as $key => $value) {
             $$key = $value;
         }
