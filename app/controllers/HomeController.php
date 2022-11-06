@@ -6,8 +6,6 @@ class HomeController
 {
 	
 	public function index(){
-		echo 'home';
-
-
+		echo 'home page';
 	}
 }
