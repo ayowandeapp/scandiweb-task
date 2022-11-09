@@ -4,7 +4,7 @@
     <div class="container">
         <h3 class="text-uppercase">add product</h3>
         <br><br>       
-        <a href="/" class="btn btn-info float-right ml-auto">Go Back</a>
+        <a href="/" class="btn btn-info float-right ml-auto">Cancel</a>
         
     </div>
 </nav><hr>
@@ -44,11 +44,11 @@
                 </div>
                 </div>
                 <div class="form-group">
-                    <label for="typeSwitch" class="col-sm-2 control-label">Type switcher</label>
+                    <label for="productType" class="col-sm-2 control-label">Product Type</label>
                     <div class="col-sm-10">
-                    <select class="form-control" id="typeSwitch" name="typeSwitch" required>
+                    <select class="form-control" id="productType" name="productType" required>
                         <option selected value=''>please choose</option>
-                        <option value="disc">DVD-disc</option>
+                        <option value="disc">DVD</option>
                         <option value="book">Book</option>
                         <option value="furniture">Furniture</option>
                     </select><span id="chktype"></span>
@@ -56,35 +56,35 @@
                 </div>
                 <div id="type">                    
                         <section class="form-group box selectable" name="disc" id="disc">
-                            <label for="size" class="col-sm-2 control-label">Size</label>
+                            <label for="size" class="col-sm-2 control-label">Size (MB)</label>
                             <div class="col-sm-10">
                             <input type="number" step="1" min="1" name="size" class="form-control" id="size" ><span id="chksize"></span>
                             </div>
                         </section>
                         <section class="form-group box selectable" name="book" id="book">
-                            <label for="weight" class="col-sm-2 control-label">Weight</label>
+                            <label for="weight" class="col-sm-2 control-label">Weight (KG)</label>
                             <div class="col-sm-10">
                             <input type="number" step="1" min="1" name="weight" class="form-control" id="weight" ><span id="chkweight"></span>
                             </div>
                         </section>
                         <section class="form-group  box selectable" name="furniture" id="furniture">
-                            <label type="number" step="1" min="1" class="col-sm-2 control-label">Length</label>
+                            <label for="height" class="col-sm-2 control-label">Height (CM)</label>
                             <div class="col-sm-10">
-                            <input type="number" step="1" min="1" name="length" class="form-control" id="length" ><span id="chklength"></span>
+                            <input type="number" step="1" min="1" name="height" class="form-control" id="height" ><span id="chkheight"></span>
                             </div>
-                            <label for="width" class="col-sm-2 control-label">Width</label>
+                            <label for="width" class="col-sm-2 control-label">Width (CM)</label>
                             <div class="col-sm-10">
                             <input type="number" step="1" min="1" name="width" class="form-control" id="width" ><span id="chkwidth"></span>
                             </div>
-                            <label for="height" class="col-sm-2 control-label">Height</label>
+                            <label type="number" step="1" min="1" class="col-sm-2 control-label">Length (CM)</label>
                             <div class="col-sm-10">
-                            <input type="number" step="1" min="1" name="height" class="form-control" id="height" ><span id="chkheight"></span>
+                            <input type="number" step="1" min="1" name="length" class="form-control" id="length" ><span id="chklength"></span>
                             </div>
                             <small>Please provide dimensions in HxWxL format.</small>
                         </section>
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-success" type="submit" name="Submit" value="Submit" id="submit">
+                    <input class="btn btn-success" type="submit" name="Submit" value="Save" id="submit">
                 </div>
             </form>
         </div>

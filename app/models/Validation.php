@@ -18,7 +18,7 @@ class Validation extends DB{
         //echo $this->sku; die;  
         $this->name = $data['name'];
         $this->price = $data['price'];
-        $this->type = $data['typeSwitch'];
+        $this->type = $data['productType'];
 
         $errors = [];
         if ($this->validateSku($this->sku)) {

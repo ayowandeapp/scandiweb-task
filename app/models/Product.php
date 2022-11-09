@@ -25,7 +25,7 @@ class Product extends DB
 	}
 	public function storeProduct($data){
 		if(!empty($data['length'] && $data['width'] && $data['height'])){
-				$dimension = 'Dimensions: ' .$data['length'] . " x " . $data['width'] . " x " . $data['height'];
+				$dimension = 'Dimensions: ' .$data['height'] . " x " . $data['width'] . " x " . $data['length'];
 			}else{
 				$dimension = null;
 			}
@@ -34,7 +34,7 @@ class Product extends DB
 			//echo $sku; die;
 			$name = $data['name'];
 			$price = $data['price'];
-			$typeSwitch = $data['typeSwitch'];
+			$productType = $data['productType'];
 			
 			$type=[];
 			$size='';
@@ -53,7 +53,7 @@ class Product extends DB
 			$value = $type[0];
 			//var_dump($value); die;
 
-		$query = "INSERT INTO products (sku,name,price,type,value) VALUES ('$sku','$name','$price','$typeSwitch','$value')";
+		$query = "INSERT INTO products (sku,name,price,type,value) VALUES ('$sku','$name','$price','$productType','$value')";
 		$result = $this->connection->query($query);
 		return $result;
 	}
