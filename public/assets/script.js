@@ -41,8 +41,8 @@ $(document).ready(function(){
         })
     }
 
-    function typeSwitchValidity(){
-        const type = document.querySelector("#typeSwitch");
+    function productTypeValidity(){
+        const type = document.querySelector("#productType");
         type.addEventListener("change", (event) => {
             $(".selectable").hide();
             $("#" + type.value.toLowerCase()).show();
@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 validateForm();
 chkSkuValidity();
-typeSwitchValidity();
+productTypeValidity();
   
 });
 
