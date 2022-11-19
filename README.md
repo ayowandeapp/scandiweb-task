@@ -25,10 +25,10 @@ OOP is a simple CRUD system that views, creates and deletes products. The web ap
 ```
 <?php
 
-	private $_host = 'localhost';
-	private $_username = 'root';
-	private $_password = '';
-	private $_database = 'test';
+	private $host = 'localhost';
+	private $username = 'root';
+	private $password = '';
+	private $database = 'test';
 
 ``` 
 4. **Run the development server:**
