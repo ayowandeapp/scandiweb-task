@@ -9,12 +9,12 @@ class App
 	protected $routes = [];
 	protected $params = [];
 
-	public function get($url,$callback)
+	public function get($url, $callback)
 	{
 		$this->routes['get'][$url]= $callback;
 	}
 
-	public function post($url,$callback)
+	public function post($url, $callback)
 	{
 		$this->routes['post'][$url]= $callback;
 	}
