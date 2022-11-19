@@ -48,9 +48,9 @@
                     <div class="col-sm-10">
                     <select class="form-control" id="productType" name="productType" required>
                         <option selected value=''>please choose</option>
-                        <option value="disc">DVD</option>
-                        <option value="book">Book</option>
-                        <option value="furniture">Furniture</option>
+                        <option value="Disc">DVD</option>
+                        <option value="Book">Book</option>
+                        <option value="Furniture">Furniture</option>
                     </select><span id="chktype"></span>
                     </div>
                 </div>

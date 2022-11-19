@@ -1,62 +1,79 @@
 <?php
 
 namespace app\controllers;
+
 use app\core\App;
 use app\models\Product;
 use app\models\Validation;
 
-
-class ProductController{
-
-	public static function index($params=[]){
-		//var_dump($params); die;
+class ProductController
+{
+	public static function index($params=[])
+	{
 		$db = new Product();
 		$products = $db->fetchData();
-		//var_dump($data['products']); die;
 		App::renderView('index',['products'=>$products]);
 	}
-	public static function add_product(){
+
+	public static function addProduct()
+	{
 		$errors=[];
-		//echo 'ok'; die;
-		if(isset($_POST['Submit'])){
-			
+
+		if (isset($_POST['Submit'])) {
 			$data = [];
+
             foreach ($_POST as $key => $value) {
                 $data[$key] = $value;
             }
-			$formvalidate= new Validation();
-			$errors['errors'] = $formvalidate->validateData($data);
+            $classname = "app\\models\\ProductType\\" . $_POST['productType'];
+
+            if (class_exists($classname)) {
+                $productData = new $classname($data);
+            } else {
+            	echo $_POST['productType']; die;
+            }
+            $errors['errors'] = $productData->validateData();
+
 			if (!$errors['errors']) {
-				$db = new Product();
-				$db->storeProduct($data);
-				//header("Location:index.php");
+				$product = new Product();
+				$product->setSku($productData->sku);
+				$product->setName($productData->name);
+				$product->setPrice($productData->price);
+				$product->setType($productData->productType);
+				$product->setValue($productData->value);
+				$product->storeProduct();
 				header('Location: /');
 				exit;
 			}
-			}
-		//echo var_dump($errors['errors']);
+		}
 		App::renderView('product/add_product',$errors);
 		exit;
-
 	}
-	public static function chk_sku($sku){
-		//$sku=$_REQUEST["sku"];
+
+	public static function chkSku($sku)
+	{
 		$sku = $sku[1];
 		$db = new Product();
-		$db->getSku($sku);
-		}
-	public static function delete_product(){
+		$result = $db->getSku($sku);
+
+		if (empty($result)) {
+			echo 'true';
+ 		} else {
+			echo 'false';
+ 		}
+	}
+
+	public static function deleteProduct()
+	{
 		if ($_POST) {
-			//var_dump( $_POST); die;
 			$db = new Product();
+
             foreach ($_POST as $key => $value) {
                 $db->deleteProduct($key);
 			}
 			header('Location: /');
-		}else{
+		} else {
 			header('Location: /');
 		}
 	}
-
-
 }

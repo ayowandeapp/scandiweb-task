@@ -2,36 +2,31 @@
 
 namespace app\core;
 
-use MYSQLI;
+use PDO;
 
-
-class DB 
+abstract class DB 
 {	
-	private $_host = 'localhost';
-	private $_username = 'root';
-	private $_password = '';
-	private $_database = 'test';
+	private $host = 'localhost';
+	private $username = 'root';
+	private $password = '';
+	private $database = 'test';
+	public $db;
 	
-	protected $db;
-	
-	public function connect()
+	public function __construct()
 	{
-		$this->db = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
-		if(!$this->db){
-			die("could not connect to the database: <be />". mysqli_connect_error());
-			}
-		$query= "CREATE TABLE if not exists products(
+		$this->db = ( 
+		new PDO("mysql:host=$this->host;dbname=$this->database", $this->username, $this->password));
+		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$query = 
+		"CREATE TABLE IF NOT EXISTS products(
 			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 			sku varchar(255) NOT NULL,
             name varchar(255) NOT NULL,
             price float NOT NULL,
             type varchar(255) NOT NULL,
             value varchar(255) NOT NULL)";
-		if(!$this->db->query($query)){
-			echo 'table not created'; die;
-
-		}
-		return $this->db;	
 		
+		$this->db->exec($query);
+		return $this->db;	
 	}
 }

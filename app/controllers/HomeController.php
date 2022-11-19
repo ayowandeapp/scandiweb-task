@@ -1,11 +1,9 @@
-<?php 
-/**
- * 
- */
+<?php
+
 class HomeController
 {
-	
-	public function index(){
+	public function index()
+	{
 		echo 'home page';
 	}
 }
