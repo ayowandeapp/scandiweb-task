@@ -23,7 +23,6 @@ OOP is a simple CRUD system that views, creates and deletes products. The web ap
 2. craete a new database
 3. setup the database connection in the app/core/DB file, change the databse detail as required
 ```
-<?php
 
 	private $host = 'localhost';
 	private $username = 'root';
