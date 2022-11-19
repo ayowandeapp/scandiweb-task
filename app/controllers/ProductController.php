@@ -25,12 +25,12 @@ class ProductController
             foreach ($_POST as $key => $value) {
                 $data[$key] = $value;
             }
-            $classname = "app\\models\\ProductType\\" . $_POST['productType'];
+            $classname = "app\\models\\productType\\" . $_POST['productType'];
 
             if (class_exists($classname)) {
                 $productData = new $classname($data);
             } else {
-            	header('Location: /');
+				header('Location: /');
             }
             $errors['errors'] = $productData->validateData();
 
