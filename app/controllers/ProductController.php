@@ -30,7 +30,7 @@ class ProductController
             if (class_exists($classname)) {
                 $productData = new $classname($data);
             } else {
-            	echo $_POST['productType']; die;
+            	header('Location: /');
             }
             $errors['errors'] = $productData->validateData();
 
